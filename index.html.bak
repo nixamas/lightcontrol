@@ -1,0 +1,88 @@
+<HTML>
+	<head>
+		<link rel="stylesheet" type="text/css" href="blueCSS.css"/>
+	</head>
+	<!--<body bgcolor="#8FBCDB">-->
+		<!--<style = type="text/css" src="blueCSS.css"/>-->
+	<body class='body'>
+	<h2>Hello there, how many lights would you like to see?</h2>
+	<h3 id="header"></h3>
+	<input id="b0" type="button" value="Lights Off" onclick="onButtonClick('0');" style="background-color:#447294;width:120px;height:30px"/>
+	<br/>
+	<input id="b1" type="button" value="One Light" onclick="onButtonClick('1');" style="background-color:#447294;width:120px;height:30px"/>
+	<br/>
+	<input id="b2" type="button" value="Two Light" onclick="onButtonClick('2');" style="background-color:#447294;width:120px;height:30px"/>
+	<br/>
+	<input id="b3" type="button" value="Three Light" onclick="onButtonClick('3');" style="background-color:#447294;width:120px;height:30px"/>
+	<br/>
+	<input id="b4" type="button" value="Four Light" onclick="onButtonClick('4');" style="background-color:#447294;width:120px;height:30px"/>
+	<br/>
+	<input id="b5" type="button" value="Five Light" onclick="onButtonClick('5');" style="background-color:#447294;width:120px;height:30px"/>
+	</body>
+<script type="text/javascript">
+
+	window.onload = initPage;
+
+	function initPage(){
+		console.log("init page");
+		createBannerTitle();
+	}
+
+	function createBannerTitle(){
+		console.log("createBannerTitle");
+		var srch = window.location.search;
+		var srchArgs = srch.split('?');
+		console.log("search arguments :: " + srchArgs);
+		console.log("arg1  :: " + srchArgs[0]);
+		console.log("arg2  :: " + srchArgs[1]);
+		var numberString = "NONE";
+		if(srchArgs[1]){
+			var args = srchArgs[1].split('=');
+			setButtonColor(args[1]);
+			console.log("switching on argument :: " + args[1]);
+			switch(args[1]){
+				case "1":
+					numberString = "ONE";
+				break;
+				case "2":
+					numberString = "TWO";
+				break;
+				case "3":
+					numberString = "THREE";
+				break;
+				case "4":
+					numberString =  "FOUR";
+				break;
+				case "5":
+					numberString = "FIVE";
+				break;
+				default:
+					numberString = "NONE";
+				break;
+			}
+		}else{
+			numberString = "NONE";
+		}
+		var bannerText = "";
+		if(numberString == "NONE"){
+			bannerText = "There are no lights on, try turning some on";
+		}else{
+			bannerText = "There are " + numberString + " light(s) on";
+		}
+		document.getElementById("header").innerHTML = bannerText;
+	}
+
+	function setButtonColor(num){
+		console.log("setButtonColor :: b" + num);
+		document.getElementById("b"+num).style.background='#294052';
+	}
+
+	function onButtonClick(value){
+		console.log("onButtonClick called with value of :: " + value);
+		console.log("current path ::: " + window.location.search);
+		window.location.search = "lights=" + value;
+		window.location.replace();
+	}
+</script>
+
+</HTML>
