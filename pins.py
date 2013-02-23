@@ -1,11 +1,11 @@
 
-pin_one = 12
-pin_two = 22
-pin_three = 32
-pin_four = 42
-pin_five = 52
+pin_zero = 7
+pin_one = 8
+pin_two = 25
+pin_three = 24
+pin_four = 23
 
 def getLightControlLEDs():
-    pins = [pin_one,pin_two,pin_three,pin_four,pin_five]
+    pins = [pin_four,pin_three,pin_two,pin_one,pin_zero]
     print "LightControlLEDs ::> " + str(pins)
     return pins

@@ -58,7 +58,18 @@ class LightControl:
 
     def applyPin(self, pinNum, pinState):
         print "applying " + str(pinState) + " to pin " + str(pinNum)
-
+        if pinState == "0":
+            GPIO.output(pinNum, GPIO.LOW)
+        elif pinState == "1":
+            GPIO.output(pinNum, GPIO.HIGH)
+        
+    def initPins():
+        GPIO.setmode(GPIO.BOARD)
+        raspPiPins = pins.getLightControlLEDs()
+        for rppNum in raspPiPins:
+            print "Initializing pin :: " + rppNum
+            GPIO.setup(rppNum, GPIO.OUT, initial=GPIO.LOW)
+        print "FINISHED PIN INIT!!!"
 
 
 
